@@ -1,6 +1,6 @@
 @font-face {
     font-family: japaness1;
-    src: url(./image/japaness1.ttf), url(./helvetica.ttf);
+    src: url(../image/japaness1.ttf), url(../helvetica.ttf);
 }
 
 .bar {
