@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet">
+    <title>mrsofa</title>
+    <style>
+        @font-face {
+            font-family: japaness1;
+            src: url(./image/japaness1.ttf), url(./helvetica.ttf);
+        }
+
+        .bar {
+            width: 100%;
+            /* height: 50px; */
+            /* 高度不要寫死阿孩子 */
+            box-shadow: 0px 0px 5px 1px rgba(128, 128, 128, 0.5);
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            background-color: white;
+        }
+
+        .grid {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ul-right {
+            width: 70px;
+            display: flex;
+            color: rgb(58, 58, 58);
+            justify-content: space-evenly;
+            margin-top: 20px;
+            /* border: 1px solid; */
+            font-size: 10px;
+            background-color: white;
+        }
+
+        .ul-right .fa-bars {
+            display: flex;
+            overflow: hidden;
+            letter-spacing: 6px;
+            height: 20px;
+            width: 20px;
+        }
+
+        .ul-bottom {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            height: 1vh;
+            width: 50px;
+            /* background-color: greenyellow; */
+            transition: 1s;
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+        }
+
+        .ul-bottom .ul1 li {
+            margin-top: 20px;
+            letter-spacing: -1px;
+
+        }
+
+        .fa-bars:active .ul-bottom {
+            position: absolute;
+            height: 100vh;
+            width: 220px;
+            top: 0;
+            right: 0%;
+            background-color: rgb(255, 255, 255);
+            white-space: nowrap;
+        }
+
+        .search-bar input[type="text"] {
+            display: block;
+            margin: 20px;
+            height: 40px;
+            border: 0;
+            background-color: rgba(177, 177, 177);
+            color: rgb(66, 66, 66);
+        }
+
+
+        .main-header {
+            margin-top: 20px;
+            margin-left: 30px;
+            margin-bottom: 10px;
+            background-color: white;
+        }
+
+        .main-header h1 {
+            font-family: 'japaness1';
+            transform: scale(1.2);
+            background-color: white;
+        }
+
+        .main-header p {
+            font-family: 'helvetica';
+            font-size: 10px;
+            transform: scale(0.3);
+            margin: 0;
+            background-color: white;
+        }
+
+        .ul-left .fa-globe {
+            display: none;
+        }
+
+        .ul-right .fa-user-circle {
+            display: none;
+        }
+
+        .ul-right .fa-comment-alt {
+            display: none;
+        }
+
+        .ul-right .fa-search {
+            display: none;
+        }
+
+        .bottom-bar {
+            display: none;
+        }
+
+        .content {
+            width: 95%;
+            overflow: auto;
+            /* padding-top:10px; */
+            margin: 20px auto;
+            margin-top: 70px;
+            /* position: relative; */
+            /* top: 50px; */
+            display: flex;
+        }
+
+        .content .img-1 {
+            width: 100%;
+            position: relative;
+        }
+
+        .content .img1-2 {
+            display: block;
+            width: 100%;
+            height: auto;
+            /* position: absolute; */
+
+        }
+
+        .content .img1-1 {
+            display: none;
+        }
+
+        .content .img-1::before {
+            content: '';
+            position: absolute;
+            background-color: #272727;
+            width: 50px;
+            height: 50px;
+            bottom: 0;
+            right: 51px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content .img-1::after {
+            content: '';
+            position: absolute;
+            background-color: #272727;
+            width: 50px;
+            height: 50px;
+            bottom: 0;
+            right: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .img-1 .left-arrow {
+            position: absolute;
+            z-index: 1;
+            bottom: 10px;
+            right: 60px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .img-1 .right-arrow {
+            position: absolute;
+            z-index: 1;
+            bottom: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .shop-line {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .shop-line3-1 {
+            display: flex;
+            width: 100%;
+            height: auto;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .shop-line3-1 .iframe-1 {
+
+            width: 90%;
+            height: 400px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .line4-1 .frame2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .shop-line img {
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .shop-line-2 {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .shop-line2-1 img {
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .shop-line2-1 {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .shop-line-2 img {
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+
+        .ad {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ad h2 {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .shop-line-2 {
+            width: 100%;
+            height: auto;
+            display: flex;
+        }
+
+        .shop-line-2 .img1 {
+            display: block;
+            width: 100%;
+            height: auto;
+
+
+        }
+
+        .shop-line-2 .img2 {
+            display: none;
+        }
+
+        .shop-line-3 {
+            width: 100%;
+            display: flex;
+            height: auto;
+
+        }
+
+        .shop-line-3 .img3 {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .shop-line-3 .img4 {
+            display: none;
+        }
+
+        .ad2 {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ad2 h3 {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-size: large;
+            color: #333;
+            font-weight: 900;
+            line-height: 1.5;
+        }
+
+        .product-item-sofa {
+            display: flex;
+            width: 100%;
+            height: auto;
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            /* flex-wrap: wrap; */
+            margin-top: 100px;
+
+            /* margin:0 auto; */
+            justify-content: space-evenly;
+        }
+
+        .product-item-table {
+            display: flex;
+            width: 100%;
+            height: auto;
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            margin-top: 100px;
+            justify-content: space-evenly;
+        }
+
+        .product-items {
+            display: flex;
+            width: 100%;
+            height: auto;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-evenly;
+        }
+
+        .product-items img {
+            transition: .5S;
+        }
+
+        .product-items .sofa1 {
+            display: flex;
+            width: 45%;
+            height: auto;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .product-items .table {
+            display: flex;
+            width: 45%;
+            height: auto;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .sofa1 .pic1-2 {
+            opacity: 0;
+            /* display: none; */
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            /* display: block; */
+        }
+
+        .sofa1 .pic4-2 {
+            opacity: 0;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+        .sofa1 .pic6-2 {
+            opacity: 0;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+
+        .table .pic1-2 {
+            opacity: 0;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+        .table .pic2-2 {
+            opacity: 0;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+        .table .pic3-2 {
+            opacity: 0;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+        .table .pic4-2 {
+            opacity: 0;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+
+        .product-items .sofa1::after {
+            content: '加入購物車';
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            text-align: center;
+            color: white;
+            /* position: absolute; */
+            font-weight: 500;
+            /* bottom: 0; */
+            font-size: 14px;
+            line-height: 1.7;
+            margin-top: 15px;
+            margin-bottom: 40px;
+            width: 75%;
+            height: 25px;
+            background-color: #272727;
+            padding: 10px;
+        }
+
+        .product-items .table::after {
+            content: '加入購物車';
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            text-align: center;
+            color: white;
+            /* position: absolute; */
+            font-weight: 500;
+            /* bottom: 0; */
+            font-size: 14px;
+            line-height: 1.7;
+            margin-top: 15px;
+            margin-bottom: 40px;
+            width: 75%;
+            height: 25px;
+            background-color: #272727;
+            padding: 10px;
+        }
+
+        .product-items .price-item {
+            display: flex;
+            flex-wrap: wrap;
+            width: 85%;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            line-height: 1.5;
+            margin: 0 auto;
+            color: #272727;
+            line-height: 1.5;
+            /* overflow-wrap: break-word; 
+            white-space: normal;  */
+
+        }
+
+        .product-items .title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.5;
+            color: #272727;
+            letter-spacing: 1px;
+            height: auto;
+        }
+
+        .product-items .price::before {
+            content: 'NT$';
+        }
+
+        .product-items img {
+            display: block;
+            margin-bottom: 70px;
+            margin-top: 40px;
+            width: 100%;
+            height: auto;
+            /* padding: 5px; */
+        }
+
+        .text-center {
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+
+        }
+
+        .text-center ul {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-center li {
+            text-align: center;
+            line-height: 2;
+            height: 30px;
+            width: 30px;
+            /* margin: 15px; */
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .text-center li:nth-child(1) {
+            background-color: #373737;
+            color: white;
+        }
+
+        .ad3 {
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            font-size: 32px;
+            text-align: center;
+            line-height: 2;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .text-center-2 {
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+
+        }
+
+        .text-center-2 ul {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-center-2 li {
+            text-align: center;
+            line-height: 2;
+            height: 30px;
+            width: 30px;
+            /* margin: 15px; */
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .text-center-2 li:nth-child(1) {
+            background-color: #373737;
+            color: white;
+        }
+
+        .ad4 {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ad4 h3 {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-size: large;
+            color: #333;
+            font-weight: 900;
+            line-height: 1.5;
+        }
+
+        .frame2 img {
+            max-width: 450px;
+            height: auto;
+        }
+
+        .line5 .img1{
+            margin-bottom: 60px;
+
+        }
+
+        footer{
+            font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            background-color:#CDCD9A ;
+            width: 100%;
+            color: white;
+        }
+        .foot1{
+            display: flex;
+            flex-direction: column;
+            margin: 30px;
+            margin-top: 50px;
+        }
+        .foot2{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 80px;
+            font-size: 13px;
+            margin-top: 60px;
+        }
+        footer a:link{
+            color: white;
+            text-decoration:none
+        }
+        .foot2-1{
+            margin: 15px;
+            width: 100%;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .foot2-1 a{
+            margin: 6px;
+        }
+     footer .fas{
+         font-size: 10px;
+         transform: scale(0.4);
+         margin: 4px;
+     }
+     footer li{
+         font-size: 18px;
+         margin: 10px;
+     }
+
+     footer p {
+         font-size: 18px;
+         margin: 10px;
+         margin-bottom: 30px;
+     }
+
+     .foot1 ul{
+         margin-bottom: 40px;
+     }
+
+    
+
+
+        @media screen and (min-width:900px) {
+            .bar {
+                width: 100%;
+                flex-direction: column;
+                box-shadow: 0px 4px 5px 1px rgba(128, 128, 128, 0.2);
+            }
+
+
+            .top {
+                display: flex;
+                height: 20px;
+                width: 100%;
+                justify-content: space-between;
+
+
+            }
+
+            .main-header {
+                display: flex;
+                /* margin-bottom: 50px; */
+                /* margin-top: 8px; */
+                margin-bottom: 30px;
+                height: 45px;
+                justify-content: center;
+
+            }
+
+            .main-header h1 {
+                font-size: 50px;
+                letter-spacing: -3px;
+
+            }
+
+            .main-header p {
+                font-size: 25px;
+                letter-spacing: 1px;
+
+            }
+
+
+            .ul-left .fa-globe {
+                display: flex;
+                margin: 20px;
+                font-size: 20px;
+                /* transform: scale(0.8); */
+                cursor: pointer;
+
+            }
+
+            .ul-right .fa-user-circle {
+                display: flex;
+                margin-right: 15px;
+                font-size: 20px;
+                /* transform: scale(0.8); */
+                cursor: pointer;
+
+            }
+
+            .ul-right .fa-comment-alt {
+                display: flex;
+                margin-right: 15px;
+                font-size: 20px;
+                /* transform: scale(0.8); */
+                cursor: pointer;
+            }
+
+            .ul-right .fa-search {
+                display: flex;
+                margin-right: 80px;
+                font-size: 20px;
+                /* transform: scale(0.8); */
+                cursor: pointer;
+            }
+
+            .ul-right .fa-dolly-flatbed {
+                margin-right: 15px;
+                font-size: 20px;
+                /* transform: scale(0.8); */
+                cursor: pointer;
+            }
+
+            .ul-right {
+                padding: 10px;
+                margin: 0;
+                letter-spacing: 5px;
+            }
+
+            .bottom-bar {
+                display: flex;
+                width: 100%;
+                margin: 10px;
+                /* height: 37px; */
+            }
+
+            .bottom-bar .ul2 {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                font-size: 20px;
+                /* border-bottom: 1px solid; */
+
+                /* transform: scale(0.7); */
+                justify-content: center;
+                margin-bottom: 10px;
+                font-weight: 600;
+                flex-wrap: wrap;
+                font-family: 'Montserrat', 'Noto Sans TC', 'Noto Sans SC', 'Mitr', 'Athiti', sans-serif;
+            }
+
+            .bottom-bar .ul2 li {
+                transform: scale(0.7);
+                letter-spacing: 1px;
+                line-height: 1.5;
+                cursor: pointer;
+                color: #333;
+            }
+
+
+            .ul2 .ul2-1 .ul2-1-1 {
+                margin: auto;
+                width: 120px;
+                position: relative;
+            }
+
+            .ul2 .ul2-1 .ul2-1-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-1:hover .ul2-1-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-2 .ul2-2-1 {
+                margin: auto;
+                width: 110px;
+                position: relative;
+            }
+
+            .ul2 .ul2-2 .ul2-2-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-2:hover .ul2-2-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-3 .ul2-3-1 {
+                margin: auto;
+                width: 100px;
+                position: relative;
+            }
+
+            .ul2 .ul2-3 .ul2-3-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-3:hover .ul2-3-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-4 .ul2-4-1 {
+                margin: auto;
+                width: 90px;
+                position: relative;
+            }
+
+            .ul2 .ul2-4 .ul2-4-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-4:hover .ul2-4-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-5 .ul2-5-1 {
+                margin: auto;
+                width: 80px;
+                position: relative;
+            }
+
+            .ul2 .ul2-5 .ul2-5-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-5:hover .ul2-5-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-6 .ul2-6-1 {
+                margin: auto;
+                width: 140px;
+                position: relative;
+            }
+
+            .ul2 .ul2-6 .ul2-6-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-6:hover .ul2-6-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-7 .ul2-7-1 {
+                margin: auto;
+                width: 90px;
+                position: relative;
+            }
+
+            .ul2 .ul2-7 .ul2-7-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-7:hover .ul2-7-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-8 .ul2-8-1 {
+                margin: auto;
+                width: 70px;
+                position: relative;
+            }
+
+            .ul2 .ul2-8 .ul2-8-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-8:hover .ul2-8-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-9 .ul2-9-1 {
+                margin: auto;
+                width: 70px;
+                position: relative;
+            }
+
+            .ul2 .ul2-9 .ul2-9-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                right: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-9:hover .ul2-9-1::after {
+                right: 0%;
+                width: 100%;
+            }
+
+            .ul2 .ul2-10 .ul2-10-1 {
+                margin: auto;
+                width: 140px;
+                position: relative;
+            }
+
+            .ul2 .ul2-10 .ul2-10-1::after {
+                content: "";
+                width: 0;
+                height: 2px;
+                background: rgb(0, 0, 0);
+                position: absolute;
+                left: 50%;
+                transition: 0.3s;
+            }
+
+            .ul2-10:hover .ul2-10-1::after {
+                left: 0%;
+                width: 100%;
+            }
+
+            .content {
+                margin-top: 200px;
+                width: 100%;
+                /* height: 400px; */
+            }
+
+            .img-1 .img1-1 {
+                display: block;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            .img-1 .img1-2 {
+                display: none;
+            }
+
+            .shop-line {
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 100%;
+                max-width: 1100px;
+                max-height: 125px;
+                height: 125px;
+                margin: auto;
+            }
+
+
+            .shop-line img {
+                width: 33.33%;
+                margin: 0 auto;
+                cursor: pointer;
+            }
+
+            .ad {
+                width: 100%;
+                margin: auto;
+                max-width: 1100px;
+            }
+
+            .shop-line1-1 {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                width: 100%;
+                margin: auto;
+            }
+
+            .shop-line2-1 {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                width: 100%;
+                margin: auto;
+            }
+
+            .shop-line-2 {
+                /* justify-content: space-evenly; */
+                width: 100%;
+                height: 100%;
+                /* margin: auto; */
+            }
+
+            .shop-line-2 .img1 {
+                display: none;
+                /* width: 1100px;
+                height: auto; 
+                width: 100%;   */
+            }
+
+            .shop-line-2 .img2 {
+                display: block;
+                width: 100%;
+                margin: 0 auto;
+                /* display: none; */
+            }
+
+            .shop-line-3 {
+                /* justify-content: space-evenly; */
+                width: 100%;
+                height: 100%;
+            }
+
+
+            .shop-line-3 .img3 {
+                display: none;
+                /* width: 1100px;
+                height: auto;
+                width: 100%; */
+            }
+
+            .shop-line-3 .img4 {
+                display: block;
+                width: 100%;
+                margin: 0 auto;
+                /* display: none; */
+            }
+
+            .ad2 {
+                width: 100%;
+                margin: auto;
+                max-width: 1100px;
+            }
+
+            .product-item-sofa {
+                width: 100%;
+                max-width: 1100px;
+                margin: auto;
+                margin-top: 120px;
+                justify-content: space-around;
+            }
+
+            .product-item-table {
+                width: 100%;
+                max-width: 1100px;
+                margin: auto;
+                margin-top: 120px;
+                justify-content: space-around;
+            }
+
+            .product-items .sofa1 {
+                width: 23%;
+                margin: auto;
+                position: relative;
+            }
+
+            .product-items .table {
+                width: 23%;
+                margin: auto;
+                position: relative;
+            }
+
+            .product-items img {
+                margin-bottom: 100px;
+                transition: .3S;
+            }
+
+
+            .product-items .sofa1::after {
+                position: absolute;
+                top: 50%;
+                width: 92%;
+                height: 0px;
+                line-height: 2.2;
+                opacity: 0;
+                transition: .3S;
+                transform: translateY(50px);
+            }
+
+            .product-items .table::after {
+                position: absolute;
+                top: 50%;
+                width: 92%;
+                height: 0px;
+                line-height: 2.2;
+                opacity: 0;
+                transition: .3S;
+                transform: translateY(50px);
+            }
+
+            .sofa1:hover {
+                cursor: pointer;
+            }
+
+            .table:hover {
+                cursor: pointer;
+            }
+
+            .sofa1:hover::after {
+                opacity: 1;
+                height: 30px;
+                transform: translateY(0px);
+            }
+
+            .table:hover::after {
+                opacity: 1;
+                height: 30px;
+                transform: translateY(0px);
+            }
+
+            .sofa1:hover .pic1-1 {
+                opacity: 0;
+                position: absolute;
+            }
+
+            .sofa1:hover .pic1-2 {
+                opacity: 1;
+                position: unset;
+                display: block;
+            }
+
+            .sofa1:hover .pic4-1 {
+                opacity: 0;
+                position: absolute;
+            }
+
+            .sofa1:hover .pic4-2 {
+                opacity: 1;
+                position: unset;
+                display: block;
+            }
+
+            .sofa1:hover .pic6-1 {
+                opacity: 0;
+                position: absolute;
+            }
+
+            .sofa1:hover .pic6-2 {
+                opacity: 1;
+                position: unset;
+                display: block;
+                height: 191px;
+            }
+
+            .table:hover .pic1-1 {
+                opacity: 0;
+                position: absolute;
+            }
+
+            .table:hover .pic1-2 {
+                opacity: 1;
+                position: unset;
+                display: block;
+
+            }
+
+            .table:hover .pic2-1 {
+                opacity: 0;
+                position: absolute;
+            }
+
+            .table:hover .pic2-2 {
+                opacity: 1;
+                position: unset;
+                display: block;
+
+            }
+
+            .table:hover .pic3-1 {
+                opacity: 0;
+                position: absolute;
+            }
+
+            .table:hover .pic3-2 {
+                opacity: 1;
+                position: unset;
+                display: block;
+
+            }
+
+            .table:hover .pic4-1 {
+                opacity: 0;
+                position: absolute;
+            }
+
+            .table:hover .pic4-2 {
+                opacity: 1;
+                position: unset;
+                display: block;
+
+            }
+
+            .product-items .price-item {
+                margin-bottom: 75px;
+            }
+
+            .text-center li:nth-child(1) {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            .text-center li:hover {
+                background-color: #373737;
+                color: #ffffff;
+                cursor: pointer;
+            }
+
+            .text-center-2 li:nth-child(1) {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            .text-center-2 li:hover {
+                background-color: #373737;
+                color: #ffffff;
+                cursor: pointer;
+            }
+
+            .text-center-2 {
+                margin-bottom: 70px;
+            }
+
+            .ad4 {
+                width: 100%;
+                margin: auto;
+                margin-bottom: 80px;
+            }
+
+            .ul-bottom {
+                display: none;
+            }
+
+            .shop-line3-1 {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                max-width: 1100px;
+                height: auto;
+                gap: 20px;
+                margin: 0 auto;
+                margin-bottom: 80px;
+            }
+
+            .line4-1 .frame2 {
+                flex-direction: row;
+                flex-wrap: wrap;
+                max-width: 1100px;
+                gap: 10px;
+            }
+
+            .frame2 .iframe-1 {
+                width: 45%;
+            }
+
+            .line4 .img2 {
+                max-width: 1050px;
+                height: auto;
+            }
+
+            .foot1{
+                flex-direction: row;
+                justify-content: space-evenly;
+                max-width: 1600px;
+                margin-left: 80px;
+            }
+            .line5 .img2{
+                margin-bottom: 60px;
+            }
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="bar">
+        <div class="top">
+            <div class="ul-left">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="ul-right">
+                <i class="far fa-user-circle"></i>
+                <i class="fas fa-dolly-flatbed"></i>
+                <i class="far fa-comment-alt"></i>
+                <i class="fas fa-search"></i>
+                <i class="fas fa-bars">
+                    <div class="ul-bottom">
+                        <div class="search-bar">
+                            <input type="text" placeholder="找商品">
+                        </div>
+                        <ul class="ul1">
+                            <li>熱賣沙發款推薦</li>
+                            <li>全新商品NEW</li>
+                            <li>精選沙發專區</li>
+                            <li>[毛毛蟲床墊]</li>
+                            <li>床墊寢具</li>
+                            <li>沙發先生家居BLOG</li>
+                            <li>開箱顧客的家</li>
+                            <li>關於我們</li>
+                            <li>分館資訊</li>
+                            <li>創作者推薦Blogger</li>
+                        </ul>
+                    </div>
+                </i>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo-center">
+                <h1>
+                    沙發先生家居
+                </h1>
+                <p>
+                    MR.SOFA CASA
+                </p>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <ul class="ul2">
+                <div class="ul2-1">
+                    <li>熱賣沙發款推薦<i class="fas fa-angle-down"></i></li>
+                    <div class="ul2-1-1"></div>
+                </div>
+                <div class="ul2-2">
+                    <li>全新商品NEW<i class="fas fa-angle-down"></i></li>
+                    <div class="ul2-2-1"></div>
+                </div>
+                <div class="ul2-3">
+                    <li>精選沙發專區<i class="fas fa-angle-down"></i></li>
+                    <div class="ul2-3-1"></div>
+                </div>
+                <div class="ul2-4">
+                    <li>[毛毛蟲床墊]</li>
+                    <div class="ul2-4-1"></div>
+                </div>
+                <div class="ul2-5">
+                    <li>床墊寢具<i class="fas fa-angle-down"></i></li>
+                    <div class="ul2-5-1"></div>
+                </div>
+                <div class="ul2-6">
+                    <li>沙發先生家居BLOG</li>
+                    <div class="ul2-6-1"></div>
+                </div>
+                <div class="ul2-7">
+                    <li>開箱顧客的家</li>
+                    <div class="ul2-7-1"></div>
+                </div>
+
+                <div class="ul2-8">
+                    <li>關於我們<i class="fas fa-angle-down"></i></li>
+                    <div class="ul2-8-1"></div>
+                </div>
+                <div class="ul2-9">
+                    <li>分館資訊<i class="fas fa-angle-down"></i></li>
+                    <div class="ul2-9-1"></div>
+                </div>
+                <div class="ul2-10">
+                    <li>創作者推薦Blogger</li>
+                    <div class="ul2-10-1"></div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="content">
+            <div class="img-1">
+                <div class="left-arrow">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <img class="img1-1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5fa8cbb2d00cfd003285d03d/2400x.webp?source_format=jpg"
+                    alt="">
+                <img class="img1-2"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5fa8d82f57ca1a1d1b1b3495/1000x.webp?source_format=jpg"
+                    alt="">
+                <div class="right-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="shop-line">
+            <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8e8901ab08ef003b1a9130/1600x.webp?source_format=png"
+                alt="">
+            <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8e8bbc6a4b0e003bbb794f/1600x.webp?source_format=png"
+                alt="">
+            <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f925402408563001d107d6d/1600x.webp?source_format=png"
+                alt="">
+        </div>
+        <div class="ad">
+            <h2>沙發先生家居 專業訂製沙發推薦</h2>
+        </div>
+        <div class="shop-line1-1">
+            <div class="shop-line-2">
+                <img class="img1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60b47585993f82863073208b/3200x.webp?source_format=jpg"
+                    alt="">
+                <img class="img2"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60b47474cc8a1b84beadf2d7/2400x.webp?source_format=jpg"
+                    alt="">
+            </div>
+            <div class="shop-line-3">
+                <img class="img3"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8e9c864eb65b002347fb8c/1200x.webp?source_format=jpg"
+                    alt="">
+                <img class="img4"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8e9aa9a05f13001126a1a2/2400x.webp?source_format=jpg"
+                    alt="">
+            </div>
+        </div>
+        <div class="ad2">
+            <h3>精選布沙發、皮沙發推薦</h3>
+        </div>
+        <div class="product-item-sofa">
+            <div class="product-items">
+                <div class="sofa1">
+                    <div class="pic">
+                        <img class=" pic1-1"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/61a0a4ff024d7b0014f2a7d7/600x.webp?source_format=jpg"
+                            alt="">
+                        <img class="pic1-2"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/61a0a5042e186c003bb99e19/800x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">Beth 貝絲</p>
+                    <div class="price-item">
+                        <div class="price">150,000</div>
+                        <p>~</p>
+                        <div class="price">208,000</div>
+                    </div>
+                </div>
+                <div class="sofa1">
+                    <div class="pic">
+                        <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/619e02315bd8db00142f415c/400x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">Let It Be</p>
+                    <div class="price-item">
+                        <div class="price">265,000</div>
+                        <p>~</p>
+                        <div class="price">295,000</div>
+                    </div>
+                </div>
+                <div class="sofa1">
+                    <div class="pic">
+                        <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/619b611fdfb295003cb715b6/600x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">SAXO 薩克斯</p>
+                    <div class="price-item">
+                        <div class="price">96,000</div>
+                        <p>~</p>
+                        <div class="price">176,000</div>
+                    </div>
+                </div>
+                <div class="sofa1">
+                    <div class="pic">
+                        <img class="pic4-1"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/615583bf975a05001d0787c9/600x.webp?source_format=jpg"
+                            alt="">
+                        <img class="pic4-2"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/615583ba36a7400038679b8f/800x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">Connie 康尼</p>
+                    <div class="price-item">
+                        <div class="price">84,000</div>
+                        <p>~</p>
+                        <div class="price">160,000</div>
+                    </div>
+                </div>
+                <div class="sofa1">
+                    <div class="pic">
+                        <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/61431b2ac15de400356e2fdf/600x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">Bryant 布萊恩</p>
+                    <div class="price-item">
+                        <div class="price">68,000</div>
+                        <p>~</p>
+                        <div class="price">124,000</div>
+                    </div>
+                </div>
+                <div class="sofa1">
+                    <div class="pic">
+                        <img class="pic6-1"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/611b6b7a5be9ef00386a0da3/600x.webp?source_format=jpg"
+                            alt="">
+                        <img class="pic6-2"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5cfe0bc03ff3eb0014e83ac5/800x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">NEESE 尼斯</p>
+                    <div class="price-item">
+                        <div class="price">30,000</div>
+                        <p>~</p>
+                        <div class="price">60,000</div>
+                    </div>
+                </div>
+                <div class="sofa1">
+                    <div class="pic">
+                        <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/61097d2f8b90ce002685fda7/600x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">NEW Noah 新諾亞</p>
+                    <div class="price-item">
+                        <div class="price">48,000</div>
+                        <p>~</p>
+                        <div class="price">94,000</div>
+                    </div>
+                </div>
+                <div class="sofa1">
+                    <div class="pic">
+                        <img src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60ffe95c6ebde8003ec7106b/600x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">Platus 柏拉圖</p>
+                    <div class="price-item">
+                        <div class="price">68,000</div>
+                        <p>~</p>
+                        <div class="price">120,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <ul>
+                <li class="li1">1</li>
+                <li class="li2">2</li>
+                <li class="li3">3</li>
+                <li class="li4">4</li>
+                <li class="li5"><i class="fas fa-chevron-right"></i></li>
+            </ul>
+        </div>
+        <div class="ad3">
+            <h3>精品茶几 Coffee table</h3>
+        </div>
+
+        <div class="product-item-table">
+            <div class="product-items">
+                <div class="table">
+                    <div class="pic">
+                        <img class=" pic1-1"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6195df26019b8e0038ead141/600x.webp?source_format=jpg"
+                            alt="">
+                        <img class="pic1-2"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6195df2be0c96e00368b2636/800x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">Lotus 荷葉陶板大茶几</p>
+                    <div class="price-item">
+                        <div class="price">25,000</div>
+                    </div>
+                </div>
+                <div class="table">
+                    <div class="pic">
+                        <img class="pic2-1"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/61972134a192d3003b107a95/600x.webp?source_format=jpg"
+                            alt="">
+                        <img class="pic2-2"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/61972139346586002099b6ba/600x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">雙圓八字茶几</p>
+                    <div class="price-item">
+                        <div class="price">8,000</div>
+                        <p>~</p>
+                        <div class="price">20,000</div>
+                    </div>
+                </div>
+                <div class="table">
+                    <div class="pic">
+                        <img class="pic3-1"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6195fd964cb130001105ff49/800x.webp?source_format=jpg"
+                            alt="">
+                        <img class="pic3-2"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6195fd9b78e8160029b2069d/600x.webp?source_format=jpg"
+                            alt="">
+                    </div>
+                    <p class="title">交叉網玻璃茶几</p>
+                    <div class="price-item">
+                        <div class="price">9,000</div>
+                        <p>~</p>
+                        <div class="price">15,000</div>
+                    </div>
+                </div>
+                <div class="table">
+                    <div class="pic">
+                        <img class="pic4-1"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6197213d3a8902001a9ec203/600x.webp?source_format=png"
+                            alt="">
+                        <img class="pic4-2"
+                            src="https://shoplineimg.com/5cc0182a527c4b0001a303db/61972151027f4e001d505fb2/600x.webp?source_format=png"
+                            alt="">
+                    </div>
+                    <p class="title">圓勾大小茶几</p>
+                    <div class="price-item">
+                        <div class="price">8,000</div>
+                        <p>~</p>
+                        <div class="price">23,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center-2">
+            <ul>
+                <li class="li1">1</li>
+                <li class="li2">2</li>
+                <li class="li5"><i class="fas fa-chevron-right"></i></li>
+            </ul>
+        </div>
+
+        <div class="ad4">
+            <h3>專業直營沙發工廠</h3>
+        </div>
+
+        <div class="shop-line2-1">
+            <div class="shop-line-2">
+                <img class="img1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8fdfd287a8f2001431f34e/1200x.webp?source_format=jpg"
+                    alt="">
+                <img class="img2"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8fdfb7eafd28002315498d/2800x.webp?source_format=jpg"
+                    alt="">
+            </div>
+            <div class="shop-line-3">
+                <img class="img3"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60fa494542602e001d0daded/1200x.webp?source_format=jpg"
+                    alt="">
+                <img class="img4"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60fa498f11b73f00175aacf0/2800x.webp?source_format=jpg"
+                    alt="">
+            </div>
+        </div>
+
+        <div class="ad4">
+            <h3>更多沙發推薦資訊</h3>
+        </div>
+
+        <div class="shop-line3-1">
+            <iframe class="iframe-1" src="https://www.youtube.com/embed/JvB_v1opbZs" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+            <iframe class="iframe-1" src="https://www.youtube.com/embed/PxbMjbrLioI" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+            <iframe class="iframe-1" src="https://www.youtube.com/embed/ulHFqvJmkBg" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+
+        <div class="shop-line2-1">
+            <div class="shop-line-2">
+                <img class="img1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6135a988b0a8060023ccb5ef/1000x.webp?source_format=jpg"
+                    alt="">
+                <img class="img2"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6135a7f9a4e895002cd07691/1200x.webp?source_format=jpg"
+                    alt="">
+            </div>
+        </div>
+
+        <div class="shop-line3-1 line4-1">
+            <div class="frame2">
+                <iframe class="iframe-1" src="https://www.youtube.com/embed/4pKfHkfrxko" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+
+                <iframe class="iframe-1" src="https://www.youtube.com/embed/GvKz-rrn_Mc" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+
+                <iframe class="iframe-1" src="https://www.youtube.com/embed/5ULiohwZ0BQ" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+
+                <iframe class="iframe-1" src="https://www.youtube.com/embed/TF2t_Xv7WXo" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="shop-line2-1">
+            <div class="shop-line-2 line4">
+                <img class="img1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6135c46bc38880527bbc1731/1400x.webp?source_format=jpg"
+                    alt="">
+                <img class="img2"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6135c46cafffbb00357e5ae3/2400x.webp?source_format=jpg"
+                    alt="">
+            </div>
+        </div>
+
+        <div class="ad4">
+            <h3>沙發知識｜沙發先生Blog</h3>
+        </div>
+
+        <div class="shop-line3-1 line4-1">
+            <div class="frame2">
+
+                <img class="iframe-1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60fe779f8ed24e001a73f00f/1600x.webp?source_format=jpeg"
+                    alt="">
+
+                <img class="iframe-1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60fe77e5df19310014784321/1600x.webp?source_format=jpeg"
+                    alt="">
+                <img class="iframe-1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/60fe766f96ce83001a53eb22/1600x.webp?source_format=jpeg"
+                    alt="">
+                <img class="iframe-1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/6135e50b447b3800261c68fc/1200x.webp?source_format=jpg"
+                    alt="">
+            </div>
+        </div>
+
+        <div class="shop-line2-1">
+            <div class="shop-line-2 line4 line5">
+                <img class="img1"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8fe01e582e1a00264431f9/1200x.webp?source_format=jpg"
+                    alt="">
+                <img class="img2"
+                    src="https://shoplineimg.com/5cc0182a527c4b0001a303db/5f8fe0285171630018e2f080/3000x.webp?source_format=jpg"
+                    alt="">
+            </div>
+        </div>
+
+        <footer>
+            <div class="foot1">
+                <ul class="ul1">
+                    <p>沙發先生家居</p>
+                    <li><i class="fas fa-square"></i>
+                        <a href="#">Facebook</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-square"></i><a href="#">LINE@</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-square"></i><a href="#">訂閱我們的頻道 NEW</a>
+                    </li>
+                    <li><i class="fas fa-square"></i><a href="#">追蹤我們的 Instagram</a>
+                    </li>
+                </ul>
+                <ul class="ul2">
+                    <P>沙發先生家居有限公司</P>
+                    <li><i class="fas fa-square"></i>客服時間 11:00-19:00</li>
+                    <li><i class="fas fa-square"></i>北部客服電話 02-22978650</li>
+                    <li><i class="fas fa-square"></i>中南部客服電話 0988-550-388</li>
+                    <li><i class="fas fa-square"></i>信箱 mrsofa.pm01@gmail.com</li>
+                </ul>
+                <ul class="ul3">
+                    <p>沙發先生家居有限公司</p>
+                    <li><i class="fas fa-square"></i>新北電話：0908727208</li>
+                    <li><i class="fas fa-square"></i>內湖電話：0989186937</li>
+                    <li><i class="fas fa-square"></i>桃園電話：0900453377</li>
+                    <li><i class="fas fa-square"></i>竹北電話：0986528078</li>
+                    <li><i class="fas fa-square"></i>台中電話：0916570537</li>
+                    <li><i class="fas fa-square"></i>台南電話：0902139088</li>
+                    <li><i class="fas fa-square"></i>烏松電話：0905619519</li>
+                    <li><i class="fas fa-square"></i>九如電話：0968683588</li>
+                </ul>
+            </div>
+            <div class="foot2">
+                <div class="foot2-1">
+                    <a href="#">品牌故事</a>
+                    <a href="#">分館資訊</a>
+                    <a href="#">預約分館</a>
+                    <a href="#">購物說明</a>
+                </div>
+                <div class="foot2-2">版權聲明&nbsp;© 2020 SU TZU TUNG</div>
+            </div>
+
+        </footer>
+
+</body>
+
+</html>
